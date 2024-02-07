@@ -20,7 +20,7 @@ public class UtenteService {
         return utenteDAO.findAll();
     }
 
-    public Optional<Utente> getUtenteById(UUID id) {
+    public Optional<Utente> getUtenteById(Long id) {
         return utenteDAO.findById(id);
     }
 
@@ -28,7 +28,7 @@ public class UtenteService {
         return utenteDAO.save(utente);
     }
 
-    public void deleteUtente(UUID id) {
+    public void deleteUtente(Long id) {
         utenteDAO.deleteById(id);
     }
 }

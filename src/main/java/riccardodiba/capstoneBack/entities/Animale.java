@@ -16,7 +16,8 @@ import java.util.UUID;
 @ToString
 public class Animale {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
+    @Setter(AccessLevel.NONE)
     private UUID uuid;
 
     @Column(nullable = false)

@@ -8,6 +8,6 @@ import java.util.UUID;
 
 
 @Repository
-public interface UtenteDAO extends JpaRepository<Utente, UUID> {
+public interface UtenteDAO extends JpaRepository<Utente, Long> {
 
 }
