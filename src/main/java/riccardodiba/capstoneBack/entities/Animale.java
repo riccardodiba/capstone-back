@@ -4,6 +4,8 @@ package riccardodiba.capstoneBack.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.UUID;
+
 @Entity
 @Table(name = "animali")
 @Data
@@ -15,7 +17,7 @@ import lombok.*;
 public class Animale {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private UUID uuid;
 
     @Column(nullable = false)
     private String nome;

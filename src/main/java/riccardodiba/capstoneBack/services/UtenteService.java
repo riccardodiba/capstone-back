@@ -8,6 +8,7 @@ import riccardodiba.capstoneBack.repositories.UtenteDAO;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class UtenteService {
@@ -19,7 +20,7 @@ public class UtenteService {
         return utenteDAO.findAll();
     }
 
-    public Optional<Utente> getUtenteById(Long id) {
+    public Optional<Utente> getUtenteById(UUID id) {
         return utenteDAO.findById(id);
     }
 
@@ -27,7 +28,7 @@ public class UtenteService {
         return utenteDAO.save(utente);
     }
 
-    public void deleteUtente(Long id) {
+    public void deleteUtente(UUID id) {
         utenteDAO.deleteById(id);
     }
 }
