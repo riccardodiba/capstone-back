@@ -30,7 +30,7 @@ public class Animale {
     private String descrizione;
 
     @ManyToOne
-    @JoinColumn(name = "utente_id", nullable = false)
+    @JoinColumn(name = "USING utente_id::bigint", nullable = false)
     private Utente utente;
 
 
