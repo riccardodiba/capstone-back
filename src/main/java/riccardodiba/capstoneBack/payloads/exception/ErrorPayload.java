@@ -1,4 +1,4 @@
-package riccardodiba.capstoneBack.payloads;
+package riccardodiba.capstoneBack.payloads.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

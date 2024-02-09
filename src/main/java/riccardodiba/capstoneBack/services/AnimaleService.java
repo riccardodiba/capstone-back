@@ -9,7 +9,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import riccardodiba.capstoneBack.entities.Animale;
 import riccardodiba.capstoneBack.exception.NotFoundException;
-import riccardodiba.capstoneBack.payloads.AnimaleDTO;
+import riccardodiba.capstoneBack.payloads.animale.AnimaleDTO;
 import riccardodiba.capstoneBack.repositories.AnimaleDAO;
 
 import java.util.List;

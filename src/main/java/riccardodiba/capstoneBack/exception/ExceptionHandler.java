@@ -9,8 +9,8 @@ import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
-import riccardodiba.capstoneBack.payloads.ErrorPayload;
-import riccardodiba.capstoneBack.payloads.ErrorPayloadWithListDTO;
+import riccardodiba.capstoneBack.payloads.exception.ErrorPayload;
+import riccardodiba.capstoneBack.payloads.exception.ErrorPayloadWithListDTO;
 
 
 import java.util.Date;

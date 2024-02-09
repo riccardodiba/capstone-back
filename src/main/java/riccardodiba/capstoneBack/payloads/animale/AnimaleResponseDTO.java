@@ -1,4 +1,4 @@
-package riccardodiba.capstoneBack.payloads;
+package riccardodiba.capstoneBack.payloads.animale;
 
 import java.util.UUID;
 
