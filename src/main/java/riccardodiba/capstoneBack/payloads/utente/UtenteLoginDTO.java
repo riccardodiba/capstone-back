@@ -1,4 +1,4 @@
 package riccardodiba.capstoneBack.payloads.utente;
 
-public record UtenteLoginDTO(String email, String passoword) {
+public record UtenteLoginDTO(String email, String password) {
 }
