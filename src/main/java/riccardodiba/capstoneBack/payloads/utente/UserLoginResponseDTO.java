@@ -1,4 +1,4 @@
 package riccardodiba.capstoneBack.payloads.utente;
 
-public record UtenteLoginResponseDTO(String token) {
+public record UserLoginResponseDTO(String token) {
 }

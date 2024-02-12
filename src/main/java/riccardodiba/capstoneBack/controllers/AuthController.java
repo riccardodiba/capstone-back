@@ -5,21 +5,22 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import riccardodiba.capstoneBack.payloads.utente.UtenteLoginDTO;
-import riccardodiba.capstoneBack.payloads.utente.UtenteLoginResponseDTO;
+import riccardodiba.capstoneBack.payloads.utente.UserLoginDTO;
+import riccardodiba.capstoneBack.payloads.utente.UserLoginResponseDTO;
 import riccardodiba.capstoneBack.services.AuthService;
+import riccardodiba.capstoneBack.services.UsersService;
 
 @RestController
 @RequestMapping("/auth")
-
 public class AuthController {
     @Autowired
     AuthService authService;
+    @Autowired
+    UsersService usersService;
+
     @PostMapping("/login")
-    public  UtenteLoginResponseDTO login (@RequestBody UtenteLoginDTO body){
-        String accessToken = authService.autenticazioneUtente(body);
-        return new UtenteLoginResponseDTO(accessToken);
-
+    public UserLoginResponseDTO login(@RequestBody UserLoginDTO body) {
+        String accessToken = authService.authenticateUser(body);
+        return new UserLoginResponseDTO(accessToken);
     }
-
 }

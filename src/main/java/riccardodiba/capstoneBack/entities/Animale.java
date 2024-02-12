@@ -31,7 +31,7 @@ public class Animale {
 
     @ManyToOne
     @JoinColumn(name = "USING utente_id::bigint", nullable = false)
-    private Utente utente;
+    private User user;
 
 
 }

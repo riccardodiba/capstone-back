@@ -2,12 +2,9 @@ package riccardodiba.capstoneBack.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
-import riccardodiba.capstoneBack.entities.Utente;
-import riccardodiba.capstoneBack.services.UtenteService;
+import riccardodiba.capstoneBack.entities.User;
+import riccardodiba.capstoneBack.services.UsersService;
 
 import java.util.UUID;
 
@@ -15,16 +12,24 @@ import java.util.UUID;
 @RequestMapping("/users")
 public class UsersController {
     @Autowired
-    private UtenteService utenteService;
+    private UsersService usersService;
 
     @GetMapping
-    public Page<Utente> getUsers(@RequestParam(defaultValue = "0") int page,
-                                 @RequestParam(defaultValue = "10") int size,
-                                 @RequestParam(defaultValue = "uuid") String orderBy) {
-        return utenteService.getUsers(page, size, orderBy);
+    public Page<User> getUsers(@RequestParam(defaultValue = "0") int page,
+                               @RequestParam(defaultValue = "10") int size,
+                               @RequestParam(defaultValue = "id") String orderBy) {
+        return usersService.getUsers(page, size, orderBy);
+    }
+
+    @GetMapping("/{userId}")
+    public User getUserById(@PathVariable UUID userId) {
+        return usersService.findById(userId);
     }
 
 
-
+    @PutMapping("/{userId}")
+    public User getUserByIdAndUpdate(@PathVariable UUID userId, @RequestBody User modifiedUserPayload) {
+        return usersService.findByIdAndUpdate(userId, modifiedUserPayload);
+    }
 
 }
