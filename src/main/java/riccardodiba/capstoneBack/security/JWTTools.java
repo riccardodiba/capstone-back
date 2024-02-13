@@ -8,24 +8,24 @@ import riccardodiba.capstoneBack.entities.User;
 import riccardodiba.capstoneBack.exception.UnauthorizedException;
 
 import java.util.Date;
+import java.util.Scanner;
 
 @Component
 public class JWTTools {
-    @Value("${spring.jwt.secret}")
+    @Value("${JWT_SECRET}")
     private String secret;
 
 
     public String createToken(User user) {
-        String ruoli = String.valueOf(user.getRuoli());
-        return Jwts.builder().subject(String.valueOf(user.getId()))
-                .claim("ruoli", ruoli)
-                .issuedAt(new Date(System.currentTimeMillis()))
-                .expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24 * 30))
-                .signWith(Keys.hmacShaKeyFor(secret.getBytes()))
+        return Jwts.builder().subject(String.valueOf(user.getId())) // Subject <-- A chi appartiene il token (id dell'utente)
+                .issuedAt(new Date(System.currentTimeMillis())) // Data di emissione (IAT - Issued At)
+                .expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24 * 7)) // Data di scadenza (Expiration Date)
+                .signWith(Keys.hmacShaKeyFor(secret.getBytes())) // Firmo il token
                 .compact();
     }
 
-    public void verifyToken(String token) { // Dato un token mi lancia eccezioni in caso di token manipolato/scaduto
+
+    public void verifyToken(String token) {
         try {
             Jwts.parser().verifyWith(Keys.hmacShaKeyFor(secret.getBytes())).build().parse(token);
         } catch (Exception ex) {
