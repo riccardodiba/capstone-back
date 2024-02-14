@@ -17,20 +17,14 @@ import java.util.UUID;
 public class Animale {
     @Id
     @GeneratedValue
-    @Setter(AccessLevel.NONE)
     private UUID uuid;
-
-    @Column(nullable = false)
     private String nome;
-
-    @Column(nullable = false)
     private String specie;
-
-    @Column(nullable = false)
     private String descrizione;
 
+
     @ManyToOne
-    @JoinColumn(name = "USING utente_id::bigint", nullable = false)
+    @JoinColumn (name = "utente_id", nullable = false)
     private User user;
 
 

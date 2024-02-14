@@ -26,6 +26,11 @@ public class AnimaleService {
         return animaleDAO.findAll();
     }
 
+    public List<Animale> getAnimale(){
+        return animaleDAO.findAll();
+    }
+
+
     public Optional<Animale> getAnimaleById(UUID id) {
         return animaleDAO.findById(id);
     }
