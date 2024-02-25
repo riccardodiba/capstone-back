@@ -1,13 +1,13 @@
 package riccardodiba.capstoneBack.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 import riccardodiba.capstoneBack.entities.Animale;
 import riccardodiba.capstoneBack.payloads.animale.AnimaleDTO;
 import riccardodiba.capstoneBack.services.AnimaleService;
 
-import java.util.List;
+
 import java.util.UUID;
 
 @RestController
@@ -19,9 +19,11 @@ public class AnimaliController {
     private AnimaleService animaleService;
 
     @GetMapping
-    public List<Animale> getAllAnimali() {
-        List<Animale> animali = animaleService.getAllAnimali();
-        return animaleService.getAnimale();
+    public Page<Animale> getAllAnimali(@RequestParam(defaultValue = "0") int page,
+                                       @RequestParam(defaultValue = "10") int size,
+                                       @RequestParam(defaultValue = "uuid") String orderBy) {
+
+        return animaleService.getAllAnimali(page,size,orderBy);
     }
 
     @GetMapping("/{id}")

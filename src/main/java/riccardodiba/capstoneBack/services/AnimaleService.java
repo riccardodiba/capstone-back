@@ -22,13 +22,12 @@ public class AnimaleService {
     @Autowired
     private AnimaleDAO animaleDAO;
 
-    public List<Animale> getAllAnimali() {
-        return animaleDAO.findAll();
+    public Page<Animale> getAllAnimali(int page,int size,String sort) {
+        Pageable pageable = PageRequest.of(page,size,Sort.by(sort));
+        return animaleDAO.findAll(pageable);
     }
 
-    public List<Animale> getAnimale(){
-        return animaleDAO.findAll();
-    }
+
 
 
     public Optional<Animale> getAnimaleById(UUID id) {
