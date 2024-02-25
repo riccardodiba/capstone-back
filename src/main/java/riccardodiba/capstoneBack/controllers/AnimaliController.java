@@ -11,7 +11,8 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/animali")
+@RequestMapping("/api/animale")
+@CrossOrigin(origins = "http://localhost:3000")
 public class AnimaliController {
 
     @Autowired

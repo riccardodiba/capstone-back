@@ -14,12 +14,16 @@ import riccardodiba.capstoneBack.payloads.utente.UserLoginResponseDTO;
 import riccardodiba.capstoneBack.services.AuthService;
 import riccardodiba.capstoneBack.services.UsersService;
 
+
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
     @Autowired
     private AuthService authService;
+    @Autowired
+    private UsersService usersService;
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/login")
     public UserLoginResponseDTO login(@RequestBody UserLoginDTO body) {
         String accessToken = authService.authenticateUser(body);
@@ -28,13 +32,15 @@ public class AuthController {
 
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
+    @CrossOrigin(origins = "http://localhost:3000")
     public NewUserResponseDTO createUser(@RequestBody @Validated NewUserDTO newUserPayload, BindingResult validation) {
 
-        System.out.println(validation);
+
         if (validation.hasErrors()) {
-            System.out.println(validation.getAllErrors());
+
             throw new BadRequestException("Ci sono errori nel payload!");
         } else {
+
             User newUser = authService.save(newUserPayload);
 
             return new NewUserResponseDTO(newUser.getId());
