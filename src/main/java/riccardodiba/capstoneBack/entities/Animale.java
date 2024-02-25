@@ -21,10 +21,11 @@ public class Animale {
     private String nome;
     private String specie;
     private String descrizione;
+    private String immagine;
 
 
     @ManyToOne
-    @JoinColumn (name = "utente_id", nullable = false)
+    @JoinColumn (name = "utente_id")
     private User user;
 
 

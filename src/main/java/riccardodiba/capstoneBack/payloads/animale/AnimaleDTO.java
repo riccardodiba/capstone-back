@@ -2,5 +2,5 @@ package riccardodiba.capstoneBack.payloads.animale;
 
 
 
-public record AnimaleDTO(String nome,String specie,String descrizione) {
+public record AnimaleDTO(String nome,String specie,String descrizione, String immagine) {
 }

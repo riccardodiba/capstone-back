@@ -39,6 +39,7 @@ public class AnimaleService {
         animale.setNome(body.nome());
         animale.setSpecie(body.specie());
         animale.setDescrizione(body.descrizione());
+        animale.setImmagine(body.immagine());
         return animaleDAO.save(animale);
 
     }
