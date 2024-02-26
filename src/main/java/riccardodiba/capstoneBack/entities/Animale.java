@@ -20,7 +20,9 @@ public class Animale {
     private UUID uuid;
     private String nome;
     private String specie;
+    @Lob
     private String descrizione;
+    @Lob
     private String immagine;
 
 
