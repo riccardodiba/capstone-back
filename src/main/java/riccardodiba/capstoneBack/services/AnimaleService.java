@@ -40,6 +40,7 @@ public class AnimaleService {
         animale.setSpecie(body.specie());
         animale.setDescrizione(body.descrizione());
         animale.setImmagine(body.immagine());
+        animale.setUuid_adozione(new UUID(0,0));
         return animaleDAO.save(animale);
 
     }
@@ -55,6 +56,14 @@ public class AnimaleService {
         Animale animale = animaleDAO.findById(id).orElseThrow(() -> new NotFoundException(id) );
         animaleDAO.delete(animale);
     }
+    public Animale findByIdAndUpdate(UUID id, AnimaleDTO body) {
+        Animale animale = this.findById(id);
+        animale.setUuid_adozione(body.uuid_adozione());
+
+        return animaleDAO.save(animale);
+    }
+
+
     }
 
 

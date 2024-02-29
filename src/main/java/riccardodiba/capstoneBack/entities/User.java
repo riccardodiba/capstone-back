@@ -28,6 +28,7 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Ruoli ruoli;
 
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(this.ruoli.name()));

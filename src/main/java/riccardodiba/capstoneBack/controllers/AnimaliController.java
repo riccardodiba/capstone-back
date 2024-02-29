@@ -42,4 +42,9 @@ public class AnimaliController {
         animaleService.deleteById(id);
     }
 
+    @PutMapping("/{id}")
+    public Animale getAnimaletByIdAndUpdate(@PathVariable UUID id, @RequestBody AnimaleDTO body) {
+        return animaleService.findByIdAndUpdate(id, body);
+    }
+
 }
