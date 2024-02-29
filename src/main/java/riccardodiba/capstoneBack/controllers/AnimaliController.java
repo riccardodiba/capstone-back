@@ -43,3 +43,7 @@ public class AnimaliController {
     }
 
 }
+@PutMapping("/{id}")
+public Animale getAnimaletByIdAndUpdate(@PathVariable UUID id, @RequestBody AnimaleDTO body) {
+    return animaleSer
+}
