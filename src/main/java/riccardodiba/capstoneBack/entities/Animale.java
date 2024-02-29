@@ -25,10 +25,10 @@ public class Animale {
     @Lob
     private String immagine;
 
-    private UUID uuid_adozione;
 
-
-
+    @ManyToOne
+    @JoinColumn (name = "utente_id")
+    private User user;
 
 
 }
