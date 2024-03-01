@@ -1,6 +1,5 @@
 package riccardodiba.capstoneBack.entities;
 
-public enum Ruoli {
-    ADMIN,
-    USER,
+public enum Role {
+    ADMIN, USER
 }

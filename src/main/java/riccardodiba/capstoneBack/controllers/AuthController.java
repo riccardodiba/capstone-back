@@ -7,10 +7,10 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import riccardodiba.capstoneBack.entities.User;
 import riccardodiba.capstoneBack.exception.BadRequestException;
-import riccardodiba.capstoneBack.payloads.utente.NewUserDTO;
-import riccardodiba.capstoneBack.payloads.utente.NewUserResponseDTO;
-import riccardodiba.capstoneBack.payloads.utente.UserLoginDTO;
-import riccardodiba.capstoneBack.payloads.utente.UserLoginResponseDTO;
+import riccardodiba.capstoneBack.payloads.user.UserDTO;
+import riccardodiba.capstoneBack.payloads.user.UserLoginDTO;
+import riccardodiba.capstoneBack.payloads.user.UserLoginResponseDTO;
+import riccardodiba.capstoneBack.payloads.user.UserResponseDTO;
 import riccardodiba.capstoneBack.services.AuthService;
 import riccardodiba.capstoneBack.services.UsersService;
 
@@ -33,7 +33,7 @@ public class AuthController {
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
     @CrossOrigin(origins = "http://localhost:3000")
-    public NewUserResponseDTO createUser(@RequestBody @Validated NewUserDTO newUserPayload, BindingResult validation) {
+    public UserResponseDTO createUser(@RequestBody @Validated UserDTO newUserPayload, BindingResult validation) {
 
 
         if (validation.hasErrors()) {
@@ -43,7 +43,7 @@ public class AuthController {
 
             User newUser = authService.save(newUserPayload);
 
-            return new NewUserResponseDTO(newUser.getId());
+            return new UserResponseDTO(newUser.getId());
         }
     }
 }

@@ -3,14 +3,19 @@ package riccardodiba.capstoneBack.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import riccardodiba.capstoneBack.entities.Ruoli;
+import riccardodiba.capstoneBack.entities.Role;
 import riccardodiba.capstoneBack.entities.User;
 import riccardodiba.capstoneBack.exception.BadRequestException;
 import riccardodiba.capstoneBack.exception.UnauthorizedException;
-import riccardodiba.capstoneBack.payloads.utente.NewUserDTO;
-import riccardodiba.capstoneBack.payloads.utente.UserLoginDTO;
-import riccardodiba.capstoneBack.repositories.UsersDAO;
+import riccardodiba.capstoneBack.payloads.user.UserDTO;
+import riccardodiba.capstoneBack.payloads.user.UserLoginDTO;
+import riccardodiba.capstoneBack.repositories.UserDAO;
 import riccardodiba.capstoneBack.security.JWTTools;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 @Service
 public class AuthService {
@@ -18,7 +23,7 @@ public class AuthService {
     private UsersService usersService;
 
     @Autowired
-    private UsersDAO usersDAO;
+    private UserDAO userDAO;
 
     @Autowired
     private PasswordEncoder bcrypt;
@@ -26,34 +31,31 @@ public class AuthService {
     @Autowired
     private JWTTools jwtTools;
 
-    public String authenticateUser(UserLoginDTO body) {
-
-        User user = usersService.findByEmail(body.email());
-
-
-        if (bcrypt.matches(body.password(), user.getPassword())) {
-
-            return jwtTools.createToken(user);
-        } else {
-
-            throw new UnauthorizedException("Credenziali non valide!");
+    public User save(UserDTO body) {
+         {
+            userDAO.findByEmail(body.email()).ifPresent(user -> {
+                throw new BadRequestException("l' email " + user.getEmail() + " è già in uso");
+            });
+            User newUser = new User();
+            newUser.setName(body.name());
+            newUser.setSurname(body.surname());
+            newUser.setRole(Role.USER);
+            newUser.setEmail(body.email().toLowerCase());
+            newUser.setPassword(bcrypt.encode(body.password()));
+            return userDAO.save(newUser);
         }
     }
 
-    public User save(NewUserDTO body) {
 
-        usersDAO.findByEmail(body.email()).ifPresent(user -> {
-            throw new BadRequestException("L'email " + user.getEmail() + " è già in uso!");
-        });
+    public String authenticateUser(UserLoginDTO body) {
+        User user = usersService.findByEmail(body.email());
 
-        User newUser = new User();
-        newUser.setSurname(body.surname());
-        newUser.setName(body.name());
-        newUser.setEmail(body.email());
-
-        newUser.setPassword(bcrypt.encode(body.password()));
-        newUser.setRuoli(Ruoli.USER);
-        return usersDAO.save(newUser);
+        if (bcrypt.matches(body.password(), user.getPassword())) {
+            return jwtTools.createToken(user);
+        } else {
+            System.out.println(body.password() + " " + bcrypt.encode(body.password()) + " " + user.getPassword());
+            throw new UnauthorizedException("Credenziali non valide!");
+        }
     }
 
 }

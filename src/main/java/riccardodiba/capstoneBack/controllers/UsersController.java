@@ -7,7 +7,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import riccardodiba.capstoneBack.entities.User;
-import riccardodiba.capstoneBack.payloads.utente.NewUserDTO;
+
 import riccardodiba.capstoneBack.services.UsersService;
 
 import java.util.UUID;
