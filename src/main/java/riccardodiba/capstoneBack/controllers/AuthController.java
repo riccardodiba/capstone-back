@@ -29,8 +29,8 @@ public class AuthController {
     @PostMapping("/login")
     public UserLoginResponseDTO login(@RequestBody UserLoginDTO body) {
         String accessToken = authService.authenticateUser(body);
-        UUID my_fake_uuid = new UUID(1,1);
-        return new UserLoginResponseDTO(accessToken,my_fake_uuid);
+        UUID my_second_uuid = new UUID(1,1);
+        return new UserLoginResponseDTO(accessToken,my_second_uuid);
     }
 
     @PostMapping("/register")
