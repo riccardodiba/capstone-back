@@ -14,6 +14,8 @@ import riccardodiba.capstoneBack.payloads.user.UserResponseDTO;
 import riccardodiba.capstoneBack.services.AuthService;
 import riccardodiba.capstoneBack.services.UsersService;
 
+import java.util.UUID;
+
 
 @RestController
 @RequestMapping("/auth")
@@ -27,7 +29,8 @@ public class AuthController {
     @PostMapping("/login")
     public UserLoginResponseDTO login(@RequestBody UserLoginDTO body) {
         String accessToken = authService.authenticateUser(body);
-        return new UserLoginResponseDTO(accessToken);
+        UUID my_fake_uuid = new UUID(1,1);
+        return new UserLoginResponseDTO(accessToken,my_fake_uuid);
     }
 
     @PostMapping("/register")
